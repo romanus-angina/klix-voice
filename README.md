@@ -115,5 +115,3 @@ The API is primarily based on WebSockets for real-time communication with Twilio
 
 ## Dependencies
 The project's dependencies are listed in `requirements.txt`.
-
-*README.md was made with [Etchr](https://etchr.dev)*
