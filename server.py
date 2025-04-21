@@ -1,7 +1,7 @@
 import argparse
 import json
 import uvicorn
-from fastapi import FastAPI, HTTPException, WebSocket
+from fastapi import FastAPI, HTTPException, WebSocket, Request
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
 from bot import run_bot
@@ -16,8 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/twiml")
-async def twiml_response():
+@app.get("/twiml")
+async def twiml_response(request: Request):
     """Return TwiML instructions when Twilio connects the call"""
     return HTMLResponse(
         content=open("templates/streams.xml").read(),

@@ -29,7 +29,7 @@ logger.add(sys.stderr, level="DEBUG", format="{time:YYYY-MM-DD at HH:mm:ss} | {l
 
 async def save_audio(server_name: str, audio: bytes, sample_rate: int, num_channels: int):
     if len(audio) > 0:
-        filename = f"{server_name}_recording_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.wav"
+        filename = f"recordings/{server_name}_recording_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.wav"
         with io.BytesIO() as buffer:
             with wave.open(buffer, 'wb') as wf:
                 wf.setnchannels(num_channels)
@@ -38,7 +38,7 @@ async def save_audio(server_name: str, audio: bytes, sample_rate: int, num_chann
                 wf.writeframes(audio)
             async with aiofiles.open(filename, 'wb') as f:
                 await f.write(buffer.getvalue())
-        logger.info(f"Merged Audio saved to {filename}")
+        logger.info(f"Merged Audio saved to recordings/{filename}")
     else:
         logger.warning("No audio data to save.")
   
@@ -67,7 +67,7 @@ async def run_bot(websocket: WebSocket, stream_sid: str, testing: bool):
     messages = [
         {
             "role": "system",
-            "content": "You are Sarah, a call agent for NeuroSync Pharmaceutical Solutions. Your goal is to screen potential participants for the Memory Enhancement Cognitive Support (MECS) clinical trial. Your goal is to have natural, engaging conversations with callers. Maintain a warm, friendly tone. Your output will be converted to audio so don't include special characters in your answers. Keep your responses concise and conversational."
+            "content": "You are Sarah, a call agent for NeuroSync Pharmaceutical Solutions. Initiate the conversation with the patient and ask them if they are interested in the clinical trial. Your goal is to screen potential participants for the Memory Enhancement Cognitive Support (MECS) clinical trial. Your goal is to have natural, engaging conversations with callers. Maintain a warm, friendly tone. Your output will be converted to audio so don't include special characters in your answers. Keep your responses concise and conversational."
         },
     ]
 
