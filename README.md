@@ -75,7 +75,7 @@ uvicorn server:app --reload
 **To make an outbound call (using the caller.py script):**
 
 ```bash
-python caller.py +12345678910 --url myapp.ngrok.io
+python caller.py +12345678910 --url <your_subdomain>.ngrok.io
 ```
 
 Replace `+12345678910` with the desired phone number and `<your_subdomain>.ngrok.io` with your ngrok url.  Ensure that your `.env` file is correctly configured (see Configuration section).  You may need to adjust the webhook URL in `templates/streams.xml`  to reflect your deployment environment (e.g., if using ngrok).
