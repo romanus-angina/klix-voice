@@ -14,7 +14,7 @@ A command line tool that initiates a conversational AI call bot using Twilio for
 1. **`.env`:** 
 - Copy the example `.example.env` file provided to create a `.env`' file
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 - Fill out the following environment variables:
 
@@ -78,7 +78,7 @@ uvicorn server:app --reload
 python caller.py +12345678910 --url myapp.ngrok.io
 ```
 
-Replace `+12345678910` with the desired phone number and `myapp.ngrok.io` with your ngrok url.  Ensure that your `.env` file is correctly configured (see Configuration section).  You may need to adjust the webhook URL in `templates/streams.xml`  to reflect your deployment environment (e.g., if using ngrok).
+Replace `+12345678910` with the desired phone number and `<your_subdomain>.ngrok.io` with your ngrok url.  Ensure that your `.env` file is correctly configured (see Configuration section).  You may need to adjust the webhook URL in `templates/streams.xml`  to reflect your deployment environment (e.g., if using ngrok).
 
 ## Installation
 1. Clone the repository:  `git clone <repository_url>`
